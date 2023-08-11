@@ -9,7 +9,13 @@ Despite the name, this documentation is also appropriate if you are trying these
 Installation instructions when you do not use Google Colab are in [INSTALL.md](INSTALL.md), but read the above links first.
 
 ## Support
-We are always open to suggestions and comments. Likewise, we welcome the reporting of possible bugs. Please always write a short but descriptive issue. We will then try to implement everything as quickly as possible.
+We have prepared a Wiki/FAQ for you, which should help you to solve any problems that may arise without further ado. 
+
+We are always open to suggestions and comments. Likewise, we welcome the reporting of possible bugs. Please always write a short but descriptive issue, use the prefabricated templates for this. We will then try to implement everything as quickly as possible.
+
+If you have any questions, problems or comments, regarding the content of the notebooks please send us an email at any time: xyz@ovgu.de.
+
+We have a discussion forum where you can exchange ideas or get in touch with us at any time!
 
 ## Roadmap
 In a galaxy far, far away....

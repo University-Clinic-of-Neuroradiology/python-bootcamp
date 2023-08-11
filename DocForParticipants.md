@@ -4,9 +4,7 @@ This instruction contain documentation and links to get started with the Python 
 
 - [Start Here](#start-here)
 
-- [Start a jupyter notebook server](#Start-a-jupyter-notebook-server)
-
-- [Starting a terminal via Jupyter](#starting-a-terminal-via-jupyter)
+- [Start a jupyter notebook in Google Colab](#Start-a-jupyter-notebook-in-google-colab)
 
 - [Getting the Data](#getting-the-data)
 
@@ -20,36 +18,32 @@ Documentation is in the form of MarkDown files (`*.md`), which are simple text f
 ## Start Here
 
 We are using Python for the exercises. Python is an open-source interactive language. We provide Python scripts for the exercises, so you should be fine.
-Nevertheless, it would be best to read also the Python tutorial first, see the [Appendices](#appendices).
+Nevertheless, it would be best to read also the Python tutorial first, see the [Appendix](#appendix).
 
-We use [Jupyter notebooks](http://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html).
+We recommend using [Google Colab](https://colab.google/) as this is an easy way (without installation) to interact with the notebooks. Colab is a hosted Jupyter Notebook service that requires no setup to use and provides free access to computing resources, including GPUs. A Google Account is mandatory for the use of Google Colab!
+
+As an alternative, we recommend [Jupyter notebooks](http://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html).
 If you have never used Jupyter notebooks, you should [read the official documentation](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html).
 A useful introduction to the notebook interface [can be found here](http://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Notebook%20Basics.html).
 
 ***Warning:** these instructions are when using JupyterLab as opposed to the "classic" notebook interface. If you choose to use the classic interface, you will have to modify the notebooks marginally by replacing `%matplotlib widget` with `%matplotlib notebook`. See also the [iPython section](#ipython) below.
 
 
-## Start a jupyter notebook server
+## Start a jupyter notebook in Google Colab
 
 bla bla
-
-
-## Starting a terminal via Jupyter
-
-It is often useful to run commands in a shell where the Python kernels run.
-- Jupyter "classic": on the "Home" tab, click on `New` on the right, and choose `Terminal`
-- JupyterLab: go to the Launcher (click on the `+` sign top-left), and choose `Terminal`.
 
 
 ## Getting the Data
 
 Some exercises use data that you will need.
 
+
 ## Get started with the course
 
-All notebooks are located in several subdirectories of [`notebooks`](./notebooks) . Each have a `README.md` file that you should read beforehand, as some notebooks have special requirements (e.g., the order that they're run in). Note that you can open a `README.md` from the Jupyter notebook, but they look nicer when browsing to GitLab.
+All notebooks are located in several subdirectories of [`notebooks`](./notebooks) . Each have a `README.md` file that you should read beforehand, as some notebooks have special requirements (e.g., the order that they're run in). Note that you can open a `README.md` from Google Colab OR the Jupyter notebook, but they look nicer when browsing to GitHub.
 
-- [Introductory](./notebooks/Introductory/) notebooks are designed to familiarise you with Python, Jupyter, SIRF, and patterns seen in the other notebooks.
+- [Introductory](./notebooks/Introductory/) notebooks are designed to familiarise you with Python, Jupyter, Data management and so on.
 - ...
 
 Start with the [introductory notebooks](notebooks/Introductory/) and the associated [README.md](notebooks/Introductory/README.md).
@@ -82,10 +76,6 @@ Here is some suggested material on Python (ordered from easy to quite time-consu
 
 
 ## Jupyter notebook manipulations
-
-The initial web-page that you will see looks like a file browser (the *Jupyter Notebook dashboard*).
-Click on `notebooks`, and drill down until you find a file with the extension `.ipynb` that looks of interest, and click on that.
-This should open a new tab in your web browser (or JupyterLab window) with the notebook open, all ready to run.
 
 You will normally work by executing each *cell* bit by bit, and then editing it to do some more work. Useful shortcuts:
 
