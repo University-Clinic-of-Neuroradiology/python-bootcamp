@@ -38,6 +38,7 @@ By the end of these notebooks, you should feel more comfortable with:
 Lionheart, W. R. B. (2015)
 An MRI DICOM data set of the head of a normal male human aged 52 [Data set]
 Zenodo, https://doi.org/10.5281/zenodo.16956
+
 <a id="2">[2]</a> 
 Marcus, DS et al. 
 Open Access Series of Imaging Studies (OASIS): Cross-Sectional MRI Data in Young, Middle Aged, Nondemented, and Demented Older Adults 
