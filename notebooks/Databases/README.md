@@ -5,7 +5,7 @@ You can also download the corresponding [slides](LINK).
 
 In this skill track, you'll work with different Open-Source datasets:
 - Chest X-Ray [CXR8](https://nihcc.app.box.com/v/ChestXray-NIHCC) [1]
-
+- Sleep EEG   http://kdd.ics.uci.edu/databases/eeg/eeg.html
 
 ## Basic concepts of Exploration
 The [introduction](introduction.ipynb) notebook serves as a starting point for all following notebooks. 
