@@ -13,4 +13,4 @@ The purpose of the [Python Conditionals and Libraries](01.02-Python-Conditionals
 ## Learning objectives
 By the end of these notebooks, you should feel more comfortable with:
 - Get a feel for Jupyter notebooks and the basic python variables and functions
-- you can read and write Python code
+- you can read and write basic Python code
