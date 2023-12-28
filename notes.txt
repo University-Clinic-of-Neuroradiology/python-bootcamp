@@ -1,0 +1,36 @@
+create nastaran branch
+#--------------------------------------------------------------------------------------------
+notebooks:
+Databases->
+01_lung_deseases_dataAnalysis
+toc is linked but we should add more and better section titles 
+there are some errors to be fixed
+introduction.ipynb
+what to put in there?
+DeepLearning->
+01_introduction_DL.ipynb toc is linked
+02_introduction_keras.ipynb toc is linked
+03_introdcution_MNIST.ipynb toc is linked
+DICOM->
+dicom2nifti
+what to put there?
+introduction.ipynb toc is linked 
+should it be 01_introduction.ipynb??
+ImageAnalysis->
+exploration.ipynb toc is linked
+image_comparison.ipynb toc is linked
+mask_and_filters.ipynb toc is linked
+measurement.ipynb toc is linked
+Introdcutory->
+01.01-Getting-Started-with-Python-and-Jupyter-Notebooks.ipynb toc is linked
+01.02-Python-Conditionals-and-Libraries.ipynb  toc is linked 
+-------------------------------------------------------------------------------------------------
+Summary and points:
+ImageAnalysis->
+to read DICOM files we can use:
+from pydicom.data import get_testdata_file
+1-imageio.imread
+2-pydicom.dcmread
+what is the difference?
+---------------------------------------------------------------------------------------------------
+Finish all the notebooks
