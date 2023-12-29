@@ -14,18 +14,17 @@ In this skill track, you'll work with different Open-Source datasets:
 The [exploration](exploration.ipynb) notebook serves as a starting point for all following notebooks. 
 To begin the course, you'll learn how to load, build and navigate N-dimensional images using a CT image of the human brain.
 
-
 ## Basic concepts of Masks and Filters
 [masks\_and\_filters](masks_and_filters.ipynb) is a notebook that cut image processing to the bone by transforming CT images.
 You'll learn how to exploit intensity patterns to select sub-regions of an array, and you'll use convolutional filters to detect interesting features.
 
-## Basic concepts of Measurements
-[measurements](measurements.ipynb) is a notebook about image segmentation, object labeling, and morphological measurement.
-You'll learn the fundamentals of image segmentation, object labeling, and morphological measurement.
-
 ## Basic concepts of Image Comparison
 [image\_comparison](image_comparison.ipynb) discusses basics of registration, resampling, and image comparison.
 You'll learn the basics of registration, resampling, and image comparison. Then, you'll use the extracted measurements to evaluate the effect of Alzheimer's Disease on brain structure.
+
+## Basic concepts of Measurements
+[measurements](measurements.ipynb) is a notebook about image segmentation, object labeling, and morphological measurement.
+You'll learn the fundamentals of image segmentation, object labeling, and morphological measurement.
 
 
 ## Learning objectives
