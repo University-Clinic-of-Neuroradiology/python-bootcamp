@@ -1,3 +1,0 @@
-notebooks/Databases/01_lung_deseases_dataAnalysis.ipynb #Data-cleaning
-apply is for dataframe
-map is for list
