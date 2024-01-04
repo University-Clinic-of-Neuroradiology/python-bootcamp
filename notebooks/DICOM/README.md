@@ -7,11 +7,14 @@ You can also download the corresponding [slides](LINK!).
 In this skill track, you'll work one Open-Source datasets:
 - Open Access Series of Imaging Studies [Oasis](https://www.oasis-brains.org/) [1]
 
-## Basic concepts of DICOM
+## Basic concepts of DICOM <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DICOM/01_introduction.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 The [DICOM](01_introduction.ipynb) notebook serves as a ...
 
-## Basic concepts of Nifti and data conversion
-[dicom2nifti](masks_and_filters.ipynb) is a notebook that ...
+## Basic concepts of Nifti and Data Conversion <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DICOM/02_dicom2nifti.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+[dicom2nifti](02_dicom2nifti.ipynb) is a notebook that ...
+
+## Different File Formats and Data Conversion <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DICOM/03_optional.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+[optional](03_optional.ipynb) is a notebook that ...
 
 
 ## Learning objectives
@@ -19,7 +22,7 @@ The [DICOM](01_introduction.ipynb) notebook serves as a ...
 By the end of these notebooks, you should feel more comfortable with:
 - the basics of DICOM data
 - to handle DICOM metadata and to modify these
-- Nifti file format and how to convert different fiel formats
+- Nifti file format and how to convert different file formats
 
 
 ## References
