@@ -3,7 +3,9 @@
 A Python bootcamp for medical students designed to teach basic DICOM and imaging data handling skills.
 
 <p align="center">
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/)
+<a target="_blank" href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 </p>
 
 ## Links to documentation
