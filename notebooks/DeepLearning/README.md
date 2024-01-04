@@ -5,13 +5,21 @@ This directory contains a few basic notebooks to expand your deep learning knowl
 In this skill track, you'll work with different Open-Source datasets:
 - [MedMNIST](https://medmnist.com/) [1,2]
 
+## Basic Concepts of DeepLearning <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/01_introduction_DL.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+In the notebook [introduction_DL](01_introduction_DL.ipynb) ...
+
+## Basic Concepts of Keras <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/02_introduction_keras.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+In the notebook [introduction_keras](02_introduction_keras.ipynb) ...
+
+## MedNIST Dataset <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+In the notebook [introduction_MNIST](03_introduction_MNIST.ipynb) ...
+
 
 ## Learning objectives
 
 By the end of these notebooks, you should feel more comfortable with:
 - to use Keras to train and test models
 - ...
-
 
 
 ## References
