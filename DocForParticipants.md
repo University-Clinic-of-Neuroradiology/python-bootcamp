@@ -33,6 +33,8 @@ A useful introduction to the notebook interface [can be found here](http://jupyt
 
 Google Colab, or Google Colaboratory, is a cloud-based platform for writing and running Jupyter notebooks using Google’s cloud resources. It provides free access to CPUs, GPUs, and TPUs, making it ideal for resource-intensive tasks like machine learning and data analysis.
 
+The following browsers have been tested and are therefore recommended: Google Chrome, Microsoft Edge and Safari (MacOS).
+
 ### How to Run Bootcamp Notebooks in Google Colab
 Follow these simple steps:
 
