@@ -1,7 +1,5 @@
 # Python Bootcamp
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/University-Clinic-of-Neuroradiology/python-bootcamp/main?urlpath=lab)
-
 A Python bootcamp for medical students designed to teach basic DICOM and imaging data handling skills.
 
 ## Links to documentation
