@@ -14,11 +14,11 @@ In this skill track, you'll work with different Open-Source datasets:
 The [exploration](01_exploration.ipynb) notebook serves as a starting point for all following notebooks. 
 To begin the course, you'll learn how to load, build and navigate N-dimensional images using a CT image of the human brain.
 
-## Basic concepts of Image Comparison <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/ImageAnalysis/03_image_comparison.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+## Basic concepts of Image Comparison <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/ImageAnalysis/02_image_comparison.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 [image\_comparison](02_image_comparison.ipynb) discusses basics of registration, resampling, and image comparison.
 You'll learn the basics of registration, resampling, and image comparison. Then, you'll use the extracted measurements to evaluate the effect of Alzheimer's Disease on brain structure.
 
-## Basic concepts of Masks and Filters <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/ImageAnalysis/02_masks_and_filters.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+## Basic concepts of Masks and Filters <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/ImageAnalysis/03_masks_and_filters.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 [masks\_and\_filters](03_masks_and_filters.ipynb) is a notebook that cut image processing to the bone by transforming CT images.
 You'll learn how to exploit intensity patterns to select sub-regions of an array, and you'll use convolutional filters to detect interesting features.
 
