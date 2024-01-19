@@ -1,6 +1,6 @@
 # Contents
 
-This directory contains a few basic notebooks to expand your deep learning knowledge. Working with Keras and TensorFlow, you’ll learn about neural networks, the deep learning model workflows, and how to optimize your models.
+This directory contains a few basic notebooks to expand your deep learning knowledge. Working with Keras and TensorFlow, you’ll learn about neural networks, the deep learning model workflows, and how to optimize your models. You can also have a look on the corresponding [slides](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/DeepLearning/slides/DeepLearning.slides.html#/).
 
 In this skill track, you'll work with different Open-Source datasets:
 - [MedMNIST](https://medmnist.com/) [1,2]

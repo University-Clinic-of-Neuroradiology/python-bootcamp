@@ -1,7 +1,6 @@
 # Contents
 
-This directory contains a few basic notebooks to learn wo work with databases and how to manage and analyse these.
-You can also download the corresponding [slides](LINK).
+This directory contains a few basic notebooks to learn wo work with databases and how to manage and analyse these. You can also have a look on the corresponding [slides](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/DataManagement/slides/Datamanagement.slides.html#/).
 
 In this skill track, you'll work with different Open-Source datasets:
 - Chest X-Ray [CXR8](https://nihcc.app.box.com/v/ChestXray-NIHCC) [1]

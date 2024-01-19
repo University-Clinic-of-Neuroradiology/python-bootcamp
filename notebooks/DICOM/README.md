@@ -1,8 +1,6 @@
 # Contents
 
-This directory contains a few basic notebooks to learn more about the DICOM file format, the conversion to Nifti and other additional file formats.
-
-You can also download the corresponding [slides](LINK!).
+This directory contains a few basic notebooks to learn more about the DICOM file format, the conversion to Nifti and other additional file formats. You can also have a look on the corresponding [slides](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/DICOM/slides/DICOM.slides.html#/).
 
 In this skill track, you'll work one Open-Source datasets:
 - Open Access Series of Imaging Studies [Oasis](https://www.oasis-brains.org/) [1]
