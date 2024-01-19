@@ -1,8 +1,6 @@
 # Contents
 
-This directory contains a few basic notebooks to learn more about the DICOM file format, the conversion to Nifti and other additional file formats.
-
-You can also download the corresponding [slides](LINK!).
+This directory contains a few basic notebooks to learn more about time analysis, like EEG or EMG. You can also have a look on the corresponding [slides](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/TimeAnalysis/slides/TimeAnalysis.slides.html#/).
 
 In this skill track, you'll work one Open-Source datasets:
 - ...

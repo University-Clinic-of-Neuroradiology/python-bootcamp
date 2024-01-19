@@ -1,6 +1,5 @@
 # Contents
-This directory contains a few basic notebooks to get you going. It is recommended to start with these
-before tackling any of the others. You can also download the corresponding [slides](../Introductory/slides/Bootcamp_Python_Introduction.pdf).
+This directory contains a few basic notebooks to get you going. It is recommended to start with these before tackling any of the others. You can also have a look on the corresponding [slides](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/Introductory/slides/Introductory.slides.html#/).
 
 
 ## Basic concepts of Python and Jupyter Notebooks <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/Introductory/01.01-Getting-Started-with-Python-and-Jupyter-Notebooks.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>

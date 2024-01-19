@@ -1,7 +1,6 @@
 # Contents
 
-This directory contains a few basic notebooks to learn exploring, manipulating and measuring biomedical image data.
-You can also download the corresponding [slides](../ImageAnalysis/slides/Bootcamp_Python_ImageAnalysis.pdf).
+This directory contains a few basic notebooks to learn exploring, manipulating and measuring biomedical image data. You can also have a look on the corresponding [slides](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/ImageAnalysis/slides/ImageAnalysis.slides.html#/).
 
 In this skill track, you'll work with different Open-Source datasets:
 - CT scan from [The Cancer Imaging Archive](https://www.cancerimagingarchive.net/about-the-cancer-imaging-archive-tcia/)
