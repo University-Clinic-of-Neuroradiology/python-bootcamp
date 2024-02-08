@@ -1,5 +1,14 @@
 # Python Bootcamp
 
+<p align="center">
+  <img src="https://github.com/University-Clinic-of-Neuroradiology/bootcamp-website/blob/master/assets/img/logo_python.jpg" width="50%" alt='python-bootcamp'>
+</p>
+
+[![Website](https://img.shields.io/badge/website-blue)](https://university-clinic-of-neuroradiology.github.io/bootcamp-website/)
+[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Documentation Status](https://readthedocs.org/projects/monai/badge/?version=latest)](https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/wiki)
+
+
 A Python bootcamp for medical students designed to teach basic DICOM and imaging data handling skills.
 
 ## Links to documentation
@@ -24,7 +33,7 @@ In a galaxy far, far away....
 Eric Einspänner, Clinic of Neuroradiology, Magdeburg, Germany
 
 ## License
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Project status
 This project is under design and construction.
