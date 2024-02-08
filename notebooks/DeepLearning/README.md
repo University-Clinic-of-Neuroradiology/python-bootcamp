@@ -23,11 +23,12 @@ By the end of these notebooks, you should feel more comfortable with:
 
 
 ## References
-<a id="1">[1]</a>
-Jiancheng Yang et al. (2023)
-MedMNIST v2-A large-scale lightweight benchmark for 2D and 3D biomedical image classification.
-Scientific Data
-<a id="2">[2]</a> 
+<a id="1">[1]</a> 
 Jiancheng Yang et al. (2021)
 MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis
 IEEE 18th International Symposium on Biomedical Imaging (ISBI)
+
+<a id="2">[2]</a>
+Jiancheng Yang et al. (2023)
+MedMNIST v2-A large-scale lightweight benchmark for 2D and 3D biomedical image classification.
+Scientific Data
