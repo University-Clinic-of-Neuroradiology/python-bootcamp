@@ -23,12 +23,14 @@ We have prepared a [![Wiki](https://img.shields.io/badge/Go%20to-wiki-yellow)](h
 
 We are always open to suggestions and comments. Likewise, we welcome the reporting of possible bugs. Please always write a short but descriptive issue, use the prefabricated templates for this. We will then try to implement everything as quickly as possible.
 
-If you have any questions, problems or comments, regarding the content of the notebooks please send us an email at any time: xyz@ovgu.de.
+If you have any questions, problems or comments, regarding the content of the notebooks please send us an email at any time: python.bootcamp@med.ovgu.de.
 
 We have a discussion forum where you can exchange ideas or get in touch with us at any time!
 
 ## Authors and acknowledgment
 Eric Einspänner, Clinic of Neuroradiology, Magdeburg, Germany
+
+Nastaran Takmilhomayouni, Clinic of Neuroradiology, Magdeburg, Germany
 
 ## License
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
