@@ -15222,15 +15222,22 @@ magic           : b&#39;n+1&#39;
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">imageio</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
 
 <span class="n">img_path</span> <span class="o">=</span> <span class="s1">&#39;Data/OAS1_0001_MR1_mpr_n4_anon_111_t88_masked_gfc_fseg.img&#39;</span>
 <span class="n">hdr_path</span> <span class="o">=</span> <span class="s1">&#39;Data/OAS1_0001_MR1_mpr_n4_anon_111_t88_masked_gfc_fseg.hdr&#39;</span>
 
-<span class="n">img</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">hdr_path</span><span class="p">)</span>    <span class="c1"># returns a tuple</span>
+<span class="c1">#img = imageio.imread(hdr_path)    # returns a tuple</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+<span class="n">hdr</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">hdr_path</span><span class="p">)</span>
+
+
 <span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
 
@@ -15256,51 +15263,64 @@ magic           : b&#39;n+1&#39;
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>&lt;class &#39;nibabel.nifti1.Nifti1Pair&#39;&gt;
+data shape (176, 208, 176, 1)
+affine: 
+[[  -1.     0.     0.    87.5]
+ [   0.     1.     0.  -103.5]
+ [   0.     0.     1.   -87.5]
+ [   0.     0.     0.     1. ]]
+metadata:
+&lt;class &#39;nibabel.nifti1.Nifti1PairHeader&#39;&gt; object, endian=&#39;&lt;&#39;
+sizeof_hdr      : 348
+data_type       : b&#39;\x00B\x00\x00YA\x00\x00\xe8@&#39;
+db_name         : b&#39;\x00\x00\x14@\x00\x00\x9d?\x00\x00\xbf&gt;\x00\x005&gt;&#39;
+extents         : 16384
+session_error   : 0
+regular         : b&#39;r&#39;
+dim_info        : 0
+dim             : [  4 176 208 176   1   1   1   1]
+intent_p1       : 0.0
+intent_p2       : 0.0
+intent_p3       : 0.0
+intent_code     : none
+datatype        : uint8
+bitpix          : 8
+slice_start     : 0
+pixdim          : [1.0000e+00 1.0000e+00 1.0000e+00 1.0000e+00 1.6531e-41 1.0000e+00
+ 1.0000e+00 1.0000e+00]
+vox_offset      : 0.0
+scl_slope       : nan
+scl_inter       : nan
+slice_end       : 0
+slice_code      : unknown
+xyzt_units      : 0
+cal_max         : 0.0
+cal_min         : 0.0
+slice_duration  : 0.0
+toffset         : 0.0
+glmax           : 3
+glmin           : 0
+descrip         : b&#39;                                                                               &#39;
+aux_file        : b&#39;                       &#39;
+qform_code      : unknown
+sform_code      : unknown
+quatern_b       : 0.0
+quatern_c       : 0.0
+quatern_d       : 0.0
+qoffset_x       : 0.0
+qoffset_y       : 0.0
+qoffset_z       : 0.0
+srow_x          : [0. 0. 0. 0.]
+srow_y          : [0. 0. 0. 0.]
+srow_z          : [0. 0. 0. 0.]
+intent_name     : b&#39;&#39;
+magic           : b&#39;ni1&#39;
+&lt;class &#39;nibabel.nifti1.Nifti1Pair&#39;&gt;
+&lt;class &#39;numpy.ndarray&#39;&gt;
+()
 </pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">~\AppData\Local\Temp/ipykernel_9232/1826285139.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">      4</span> hdr_path <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;Data/OAS1_0001_MR1_mpr_n4_anon_111_t88_masked_gfc_fseg.hdr&#39;</span>
-<span class="ansi-green-fg">      5</span> 
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 6</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>img <span class="ansi-yellow-intense-fg ansi-bold">=</span> imageio<span class="ansi-yellow-intense-fg ansi-bold">.</span>imread<span class="ansi-yellow-intense-fg ansi-bold">(</span>hdr_path<span class="ansi-yellow-intense-fg ansi-bold">)</span>    <span class="ansi-red-intense-fg ansi-bold"># returns a tuple</span>
-<span class="ansi-green-fg">      7</span> print<span class="ansi-yellow-intense-fg ansi-bold">(</span>img<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">      8</span> print<span class="ansi-yellow-intense-fg ansi-bold">(</span>type<span class="ansi-yellow-intense-fg ansi-bold">(</span>img<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-green-intense-fg ansi-bold">~\anaconda3\lib\site-packages\imageio\__init__.py</span> in <span class="ansi-cyan-fg">imread</span><span class="ansi-blue-intense-fg ansi-bold">(uri, format, **kwargs)</span>
-<span class="ansi-green-fg">     95</span>     )
-<span class="ansi-green-fg">     96</span> 
-<span class="ansi-green-intense-fg ansi-bold">---&gt; 97</span><span class="ansi-yellow-intense-fg ansi-bold">     </span><span class="ansi-green-intense-fg ansi-bold">return</span> imread_v2<span class="ansi-yellow-intense-fg ansi-bold">(</span>uri<span class="ansi-yellow-intense-fg ansi-bold">,</span> format<span class="ansi-yellow-intense-fg ansi-bold">=</span>format<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">**</span>kwargs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">     98</span> 
-<span class="ansi-green-fg">     99</span> 
-
-<span class="ansi-green-intense-fg ansi-bold">~\anaconda3\lib\site-packages\imageio\v2.py</span> in <span class="ansi-cyan-fg">imread</span><span class="ansi-blue-intense-fg ansi-bold">(uri, format, **kwargs)</span>
-<span class="ansi-green-fg">    358</span> 
-<span class="ansi-green-fg">    359</span>     <span class="ansi-green-intense-fg ansi-bold">with</span> imopen<span class="ansi-yellow-intense-fg ansi-bold">(</span>uri<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#34;ri&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">**</span>imopen_args<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-green-intense-fg ansi-bold">as</span> file<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">--&gt; 360</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>result <span class="ansi-yellow-intense-fg ansi-bold">=</span> file<span class="ansi-yellow-intense-fg ansi-bold">.</span>read<span class="ansi-yellow-intense-fg ansi-bold">(</span>index<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">**</span>kwargs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">    361</span> 
-<span class="ansi-green-fg">    362</span>     <span class="ansi-green-intense-fg ansi-bold">return</span> result
-
-<span class="ansi-green-intense-fg ansi-bold">~\anaconda3\lib\site-packages\imageio\plugins\spe.py</span> in <span class="ansi-cyan-fg">read</span><span class="ansi-blue-intense-fg ansi-bold">(self, index)</span>
-<span class="ansi-green-fg">    547</span>             out_shape <span class="ansi-yellow-intense-fg ansi-bold">=</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_shape
-<span class="ansi-green-fg">    548</span> 
-<span class="ansi-green-intense-fg ansi-bold">--&gt; 549</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_file<span class="ansi-yellow-intense-fg ansi-bold">.</span>seek<span class="ansi-yellow-intense-fg ansi-bold">(</span>read_offset<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">    550</span>         data <span class="ansi-yellow-intense-fg ansi-bold">=</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>fromfile<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_file<span class="ansi-yellow-intense-fg ansi-bold">,</span> dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span> count<span class="ansi-yellow-intense-fg ansi-bold">=</span>count<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">    551</span>         <span class="ansi-green-intense-fg ansi-bold">return</span> data<span class="ansi-yellow-intense-fg ansi-bold">.</span>reshape<span class="ansi-yellow-intense-fg ansi-bold">(</span>out_shape<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-red-intense-fg ansi-bold">TypeError</span>: only integer scalar arrays can be converted to a scalar index</pre>
 </div>
 </div>
 
