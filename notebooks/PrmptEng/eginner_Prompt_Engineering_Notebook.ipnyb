@@ -1,0 +1,811 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "rJLDBbJdrcuF"
+      },
+      "source": [
+        "# Beginner Prompt Engineering Notebook\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "This notebook introduces the fundamental concepts of **prompt engineering**, a critical skill for effectively interacting with Large Language Models (LLMs) such as GPT, ChatGPT, or PaLM. You will learn how to craft basic prompts to elicit accurate and relevant responses, including applications in medical contexts. New additions include interactive widgets, visualizations, and expanded examples to enhance learning.\n",
+        "\n",
+        "This demo is a Jupyter notebook, intended to be run step by step.\n",
+        "\n",
+        "Author: Mohammad Rezapourian\n",
+        "\n",
+        "First version: 15th of April 2025\n",
+        "\n",
+        "Updated: 30th of April 2025\n",
+        "\n",
+        "License: Apache-2.0"
+      ],
+      "id": "rJLDBbJdrcuF"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "UmDHi5THrcuJ"
+      },
+      "source": [
+        "## Table of Contents\n",
+        "1. [Initial Set-Up](#Initial-Set-Up)\n",
+        "2. [What is Prompt Engineering?](#What-is-Prompt-Engineering)\n",
+        "3. [Key Principles of Prompt Engineering](#Key-Principles-of-Prompt-Engineering)\n",
+        "4. [Types of Prompting Techniques](#Types-of-Prompting-Techniques)\n",
+        "    - [Zero-shot Prompting](#Zero-shot-Prompting)\n",
+        "    - [Few-shot Prompting](#Few-shot-Prompting)\n",
+        "5. [Practical Tips for Writing Prompts](#Practical-Tips-for-Writing-Prompts)\n",
+        "6. [Hands-on Exercise: Crafting Prompts](#Hands-on-Exercise-Crafting-Prompts)\n",
+        "7. [Interactive Prompt Testing with Widgets](#Interactive-Prompt-Testing-with-Widgets)\n",
+        "8. [Optional: Running Prompts with an LLM API](#Optional-Running-Prompts-with-an-LLM-API)\n",
+        "9. [Visualizing Prompt Outputs](#Visualizing-Prompt-Outputs)\n",
+        "10. [Conclusion and Next Steps](#Conclusion-and-Next-Steps)"
+      ],
+      "id": "UmDHi5THrcuJ"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "8z8KSWHprcuL"
+      },
+      "source": [
+        "## Initial Set-Up\n",
+        "\n",
+        "This notebook requires minimal dependencies for basic exercises. For advanced tasks, ensure you have the relevant libraries installed. We'll check for installations and guide API key setup for tools like OpenAI or Hugging Face.\n",
+        "\n",
+        "**Prerequisites**:\n",
+        "- Basic understanding of Python (required for coding exercises).\n",
+        "- Access to an LLM API (e.g., OpenAI’s ChatGPT or Hugging Face) is optional. Simulated responses are provided for non-API users.\n",
+        "- Install `openai`, `transformers`, `ipywidgets`, and `matplotlib` for advanced tasks (`pip install openai transformers ipywidgets matplotlib`).\n",
+        "\n",
+        "The following cell sets up libraries and checks for their availability."
+      ],
+      "id": "8z8KSWHprcuL"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "OdAtDlIbrcuM"
+      },
+      "outputs": [],
+      "source": [
+        "# Import necessary libraries\n",
+        "import numpy as np  # For data manipulation\n",
+        "import json  # For structured outputs\n",
+        "import matplotlib.pyplot as plt  # For visualizations\n",
+        "%matplotlib inline\n",
+        "\n",
+        "# Check for optional libraries\n",
+        "try:\n",
+        "    import openai\n",
+        "    print(\"OpenAI library is installed.\")\n",
+        "except ImportError:\n",
+        "    print(\"OpenAI library not installed. Install with `pip install openai` for API examples.\")\n",
+        "\n",
+        "try:\n",
+        "    import transformers\n",
+        "    print(\"Transformers library is installed.\")\n",
+        "except ImportError:\n",
+        "    print(\"Transformers not installed. Install with `pip install transformers` for Hugging Face models.\")\n",
+        "\n",
+        "try:\n",
+        "    import ipywidgets\n",
+        "    print(\"ipywidgets library is installed.\")\n",
+        "except ImportError:\n",
+        "    print(\"ipywidgets not installed. Install with `pip install ipywidgets` for interactive exercises.\")\n",
+        "\n",
+        "# Optional: Set up OpenAI API key (replace with your own key)\n",
+        "# import os\n",
+        "# os.environ['OPENAI_API_KEY'] = 'your-api-key-here'\n",
+        "# print(\"OpenAI API key set. Ensure you replace 'your-api-key-here' with your actual key.\")"
+      ],
+      "id": "OdAtDlIbrcuM"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "uYvRRU9WrcuP"
+      },
+      "source": [
+        "## What is Prompt Engineering?\n",
+        "\n",
+        "Prompt engineering is the process of designing and optimizing **prompts** (inputs or queries) to elicit the most accurate, relevant, and useful responses from Large Language Models (LLMs). A prompt is the text you provide to the model, and the quality of the prompt directly affects the quality of the output.\n",
+        "\n",
+        "**Why is it important?**\n",
+        "- LLMs are powerful but sensitive to how questions or instructions are phrased.\n",
+        "- Well-crafted prompts improve model performance for tasks like question answering, text generation, or problem-solving.\n",
+        "- Prompt engineering is key to tailoring LLM behavior for specific applications (e.g., customer service, education, coding, or medical diagnosis).\n",
+        "\n",
+        "**Example**:\n",
+        "- Poor prompt: \"Tell me about history.\"\n",
+        "- Better prompt: \"Provide a concise summary of the major events in European history from 1500 to 1800.\"\n",
+        "\n",
+        "**Medical Example**:\n",
+        "- Poor prompt: \"What is diabetes?\"\n",
+        "- Better prompt: \"Explain type 2 diabetes in simple terms, focusing on its causes and symptoms, in one paragraph.\"\n",
+        "\n",
+        "> **Note**: According to [Awesome Prompt Engineering](https://github.com/promptslab/Awesome-Prompt-Engineering), prompt engineering is vital for working with models like GPT and ChatGPT, as it helps unlock their full potential for tasks like natural language processing (NLP)."
+      ],
+      "id": "uYvRRU9WrcuP"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "newExampleCode1"
+      },
+      "outputs": [],
+      "source": [
+        "# Example: Simulate prompt comparison\n",
+        "def compare_prompts(poor_prompt, better_prompt):\n",
+        "    print(f\"Poor Prompt: {poor_prompt}\")\n",
+        "    print(\"Simulated Output: [Broad, unfocused response]\")\n",
+        "    print(f\"\\nBetter Prompt: {better_prompt}\")\n",
+        "    print(\"Simulated Output: [Concise, relevant response]\")\n",
+        "\n",
+        "# Test the function\n",
+        "compare_prompts(\n",
+        "    poor_prompt=\"What is diabetes?\",\n",
+        "    better_prompt=\"Explain type 2 diabetes in simple terms, focusing on its causes and symptoms, in one paragraph.\"\n",
+        ")"
+      ],
+      "id": "newExampleCode1"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "2tSENA-XrcuQ"
+      },
+      "source": [
+        "## Key Principles of Prompt Engineering\n",
+        "\n",
+        "To craft effective prompts, follow these principles:\n",
+        "\n",
+        "1. **Clarity**: Use clear, unambiguous language to avoid confusion.\n",
+        "2. **Specificity**: Be precise about what you want (e.g., tone, format, or length).\n",
+        "3. **Context**: Provide enough background information to guide the model.\n",
+        "4. **Structure**: Use structured formats (e.g., bullet points, numbered lists) for complex tasks.\n",
+        "\n",
+        "**Activity**: Analyze two prompts.\n",
+        "\n",
+        "- **Prompt A**: \"Write something about animals.\"\n",
+        "- **Prompt B**: \"Write a 100-word paragraph about the habitat and diet of African elephants in a formal tone.\"\n",
+        "\n",
+        "**Discussion**:\n",
+        "- Why is Prompt B better?\n",
+        "- How could you improve Prompt A?\n",
+        "\n",
+        "**New Example**:\n",
+        "- **Prompt C**: \"Tell me about heart disease.\"\n",
+        "- **Prompt D**: \"Provide a one-sentence definition of coronary artery disease, including its primary cause, in simple language.\"\n",
+        "\n",
+        "**Improved Prompt A**:\n",
+        "```plaintext\n",
+        "Write a three-sentence description of the behavior and habitat of pandas in a friendly tone.\n",
+        "```"
+      ],
+      "id": "2tSENA-XrcuQ"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "newExampleCode2"
+      },
+      "outputs": [],
+      "source": [
+        "# Example: Simulate prompt improvement\n",
+        "def improve_prompt(original, improved):\n",
+        "    print(f\"Original Prompt: {original}\")\n",
+        "    print(\"Issue: Too vague, lacks structure or specificity.\")\n",
+        "    print(f\"\\nImproved Prompt: {improved}\")\n",
+        "    print(\"Benefit: Clear, specific, and structured for better output.\")\n",
+        "\n",
+        "# Test the function\n",
+        "improve_prompt(\n",
+        "    original=\"Tell me about heart disease.\",\n",
+        "    improved=\"Provide a one-sentence definition of coronary artery disease, including its primary cause, in simple language.\"\n",
+        ")"
+      ],
+      "id": "newExampleCode2"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "X4Q_hnJzrcuS"
+      },
+      "source": [
+        "## Types of Prompting Techniques\n",
+        "\n",
+        "This section explores two foundational prompting techniques: **Zero-shot** and **Few-shot** prompting. These are beginner-friendly methods to get started with LLMs, and we’ll include additional medical examples to illustrate their use."
+      ],
+      "id": "X4Q_hnJzrcuS"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Hpz0gPDlrcuS"
+      },
+      "source": [
+        "### Zero-shot Prompting\n",
+        "\n",
+        "In zero-shot prompting, you provide a task to the LLM without any examples. The model relies on its pre-trained knowledge to generate a response.\n",
+        "\n",
+        "**General Example Prompt**:\n",
+        "```plaintext\n",
+        "Classify the sentiment of this sentence as positive, negative, or neutral:\n",
+        "\"I had a fantastic time at the concert last night!\"\n",
+        "```\n",
+        "\n",
+        "**Expected Output**: Positive\n",
+        "\n",
+        "**Medical Example Prompt 1**:\n",
+        "```plaintext\n",
+        "Provide a brief explanation of the medical term 'hypertension' in simple language.\n",
+        "```\n",
+        "\n",
+        "**Expected Output**: Hypertension, or high blood pressure, is when the force of blood against artery walls is consistently too high, which can strain the heart and blood vessels.\n",
+        "\n",
+        "**Medical Example Prompt 2**:\n",
+        "```plaintext\n",
+        "Define 'hypoglycemia' in one sentence, using simple terms.\n",
+        "```\n",
+        "\n",
+        "**Expected Output**: Hypoglycemia is a condition where blood sugar levels drop too low, causing symptoms like shakiness or confusion.\n",
+        "\n",
+        "**Try it!** Write a zero-shot prompt to ask an LLM to summarize a short medical text in one sentence. Test it with this text:\n",
+        "\n",
+        "> Diabetes is a chronic condition where the body cannot properly regulate blood sugar levels, leading to high glucose in the blood. It can cause complications like heart disease or kidney damage if not managed.\n",
+        "\n",
+        "**Your Prompt**:\n",
+        "```plaintext\n",
+        "Summarize the following text in one sentence:\n",
+        "Diabetes is a chronic condition where the body cannot properly regulate blood sugar levels, leading to high glucose in the blood. It can cause complications like heart disease or kidney damage if not managed.\n",
+        "```\n",
+        "\n",
+        "**Expected Output**: Diabetes is a chronic condition causing high blood sugar, which can lead to serious complications like heart disease or kidney damage if unmanaged."
+      ],
+      "id": "Hpz0gPDlrcuS"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "newZeroShotCode"
+      },
+      "outputs": [],
+      "source": [
+        "# Example: Simulate zero-shot prompt response\n",
+        "def simulate_zero_shot(prompt, input_text):\n",
+        "    print(f\"Prompt: {prompt}\")\n",
+        "    print(f\"Input: {input_text}\")\n",
+        "    print(f\"Simulated Output: [Summarized response for {input_text}]\")\n",
+        "\n",
+        "# Test the function\n",
+        "simulate_zero_shot(\n",
+        "    prompt=\"Summarize the following text in one sentence:\",\n",
+        "    input_text=\"Diabetes is a chronic condition where the body cannot properly regulate blood sugar levels, leading to high glucose in the blood. It can cause complications like heart disease or kidney damage if not managed.\"\n",
+        ")"
+      ],
+      "id": "newZeroShotCode"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "dBnZT0sYrcuU"
+      },
+      "source": [
+        "### Few-shot Prompting\n",
+        "\n",
+        "In few-shot prompting, you provide a few examples of the task to guide the LLM. This helps the model understand the desired format or style.\n",
+        "\n",
+        "**General Example Prompt**:\n",
+        "```plaintext\n",
+        "Translate the following English words into Spanish:\n",
+        "1. Cat -> Gato\n",
+        "2. House -> Casa\n",
+        "3. Tree -> Árbol\n",
+        "\n",
+        "Now translate: Book\n",
+        "```\n",
+        "\n",
+        "**Expected Output**: Libro\n",
+        "\n",
+        "**Medical Example Prompt 1**:\n",
+        "```plaintext\n",
+        "Generate a one-sentence description of the purpose of each medical device:\n",
+        "1. Item: Stethoscope\n",
+        "   Description: A stethoscope is used by healthcare professionals to listen to heart, lung, and other internal body sounds for diagnostic purposes.\n",
+        "2. Item: Glucometer\n",
+        "   Description: A glucometer measures blood sugar levels, helping diabetic patients monitor and manage their condition.\n",
+        "\n",
+        "Now describe: Thermometer\n",
+        "```\n",
+        "\n",
+        "**Expected Output**: A thermometer measures body temperature to help detect fever or monitor health conditions.\n",
+        "\n",
+        "**Medical Example Prompt 2**:\n",
+        "```plaintext\n",
+        "Provide a one-sentence explanation of the following medical conditions:\n",
+        "1. Condition: Asthma\n",
+        "   Explanation: Asthma is a chronic condition where the airways narrow, causing wheezing and difficulty breathing.\n",
+        "2. Condition: Hypertension\n",
+        "   Explanation: Hypertension, or high blood pressure, is when blood pressure is consistently elevated, risking heart and vessel damage.\n",
+        "\n",
+        "Now explain: Migraine\n",
+        "```\n",
+        "\n",
+        "**Expected Output**: A migraine is a neurological condition causing severe headaches, often accompanied by nausea and sensitivity to light or sound.\n",
+        "\n",
+        "**Try it!** Write a few-shot prompt to generate a patient symptom summary based on provided examples. Use these examples:\n",
+        "\n",
+        "- **Patient Symptoms**: Fever, cough, fatigue\n",
+        "  **Summary**: The patient is experiencing a fever, persistent cough, and significant fatigue, suggesting a possible respiratory infection.\n",
+        "- **Patient Symptoms**: Headache, nausea, dizziness\n",
+        "  **Summary**: The patient reports headaches, nausea, and dizziness, which may indicate a migraine or dehydration.\n",
+        "\n",
+        "**Your Prompt**:\n",
+        "```plaintext\n",
+        "Write a one-sentence summary of a patient's symptoms based on the provided examples:\n",
+        "1. Symptoms: Fever, cough, fatigue\n",
+        "   Summary: The patient is experiencing a fever, persistent cough, and significant fatigue, suggesting a possible respiratory infection.\n",
+        "2. Symptoms: Headache, nausea, dizziness\n",
+        "   Summary: The patient reports headaches, nausea, and dizziness, which may indicate a migraine or dehydration.\n",
+        "\n",
+        "Now summarize: Sore throat, fever, swollen glands\n",
+        "```\n",
+        "\n",
+        "**Expected Output**: The patient is experiencing a sore throat, fever, and swollen glands, which may suggest a viral or bacterial infection like tonsillitis."
+      ],
+      "id": "dBnZT0sYrcuU"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "newFewShotCode"
+      },
+      "outputs": [],
+      "source": [
+        "# Example: Simulate few-shot prompt response\n",
+        "def simulate_few_shot(examples, task_input):\n",
+        "    print(\"Examples:\")\n",
+        "    for example in examples:\n",
+        "        print(f\"Input: {example['input']}\")\n",
+        "        print(f\"Output: {example['output']}\")\n",
+        "    print(f\"\\nTask Input: {task_input}\")\n",
+        "    print(f\"Simulated Output: [Generated response for {task_input}]\")\n",
+        "\n",
+        "# Test the function\n",
+        "examples = [\n",
+        "    {\"input\": \"Fever, cough, fatigue\", \"output\": \"The patient is experiencing a fever, persistent cough, and significant fatigue, suggesting a possible respiratory infection.\"},\n",
+        "    {\"input\": \"Headache, nausea, dizziness\", \"output\": \"The patient reports headaches, nausea, and dizziness, which may indicate a migraine or dehydration.\"}\n",
+        "]\n",
+        "simulate_few_shot(examples, \"Sore throat, fever, swollen glands\")"
+      ],
+      "id": "newFewShotCode"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "piKumxd9rcuV"
+      },
+      "source": [
+        "## Practical Tips for Writing Prompts\n",
+        "\n",
+        "Here are some tips to improve your prompts, inspired by [Awesome Prompt Engineering](https://github.com/promptslab/Awesome-Prompt-Engineering):\n",
+        "\n",
+        "- **Use delimiters**: Use quotes or brackets to clearly indicate input text (e.g., \"text to analyze\").\n",
+        "- **Specify tone**: Request a formal, casual, or professional tone if needed.\n",
+        "- **Limit scope**: Ask for concise answers or specific formats (e.g., bullet points, one paragraph).\n",
+        "- **Test and iterate**: Experiment with different phrasings to see what works best.\n",
+        "\n",
+        "**Example**:\n",
+        "- Basic prompt: \"Write a poem.\"\n",
+        "- Improved prompt: \"Write a four-line poem about the ocean in a serene tone, using simple language.\"\n",
+        "\n",
+        "**Medical Example**:\n",
+        "- Basic prompt: \"Explain asthma.\"\n",
+        "- Improved prompt: \"Explain asthma in one sentence, using simple language suitable for a patient.\"\n",
+        "\n",
+        "**Activity**: Improve this prompt:\n",
+        "```plaintext\n",
+        "Tell me about a city.\n",
+        "```\n",
+        "\n",
+        "**Your Improved Prompt**:\n",
+        "```plaintext\n",
+        "Provide a three-sentence description of Paris, France, focusing on its cultural landmarks and atmosphere, in a lively tone.\n",
+        "```"
+      ],
+      "id": "piKumxd9rcuV"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "newTipsCode"
+      },
+      "outputs": [],
+      "source": [
+        "# Example: Simulate prompt improvement for medical context\n",
+        "def improve_medical_prompt(original, improved):\n",
+        "    print(f\"Original Prompt: {original}\")\n",
+        "    print(\"Issue: Lacks specificity and tone guidance.\")\n",
+        "    print(f\"\\nImproved Prompt: {improved}\")\n",
+        "    print(\"Benefit: Specifies format and audience for clearer output.\")\n",
+        "\n",
+        "# Test the function\n",
+        "improve_medical_prompt(\n",
+        "    original=\"Explain asthma.\",\n",
+        "    improved=\"Explain asthma in one sentence, using simple language suitable for a patient.\"\n",
+        ")"
+      ],
+      "id": "newTipsCode"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "TtrUWvn3rcuX"
+      },
+      "source": [
+        "## Hands-on Exercise: Crafting Prompts\n",
+        "\n",
+        "In this section, you’ll practice writing prompts for various tasks, including medical scenarios. Use zero-shot or few-shot prompting as appropriate.\n",
+        "\n",
+        "**Tasks**:\n",
+        "\n",
+        "1. **Task**: Generate a tagline for a fictional coffee shop called \"Bean Bliss.\"\n",
+        "   - Write a zero-shot prompt.\n",
+        "   - Example output: \"Bean Bliss: Where every sip sparks joy!\"\n",
+        "\n",
+        "2. **Task**: Correct the grammar in a sentence.\n",
+        "   - Write a few-shot prompt with two example corrections.\n",
+        "   - Test sentence: \"She go to the store yesterday.\"\n",
+        "   - Example output: \"She went to the store yesterday.\"\n",
+        "\n",
+        "3. **Medical Task**: Generate a one-sentence explanation of a medical procedure based on examples.\n",
+        "   - Write a few-shot prompt with two example explanations.\n",
+        "   - Test procedure: Appendectomy\n",
+        "   - Example output: An appendectomy is a surgical procedure to remove the appendix, often performed to treat appendicitis.\n",
+        "\n",
+        "4. **New Task**: Summarize a patient’s condition in one sentence.\n",
+        "   - Write a zero-shot prompt.\n",
+        "   - Test text: \"The patient reports chest pain and shortness of breath, with an ECG showing abnormalities.\"\n",
+        "   - Example output: The patient is experiencing chest pain and shortness of breath with abnormal ECG results, suggesting a possible heart condition.\n",
+        "\n",
+        "5. **New Medical Task**: Define a medical term with examples.\n",
+        "   - Write a few-shot prompt with two example definitions.\n",
+        "   - Test term: Anemia\n",
+        "   - Example output: Anemia is a condition where the body lacks enough red blood cells to carry oxygen, causing fatigue and weakness."
+      ],
+      "id": "TtrUWvn3rcuX"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "Y6DU4PV-rcuY"
+      },
+      "outputs": [],
+      "source": [
+        "# Write your prompts here\n",
+        "\n",
+        "# 1. Zero-shot prompt for tagline\n",
+        "prompt_1 = \"\"\"Create a catchy tagline for a coffee shop named 'Bean Bliss' that emphasizes its cozy and joyful atmosphere.\"\"\"\n",
+        "print(\"Zero-shot prompt for tagline:\")\n",
+        "print(prompt_1)\n",
+        "\n",
+        "# 2. Few-shot prompt for grammar correction\n",
+        "prompt_2 = \"\"\"Correct the grammar in the following sentences:\n",
+        "1. Input: He run fast.\n",
+        "   Output: He runs fast.\n",
+        "2. Input: They was happy.\n",
+        "   Output: They were happy.\n",
+        "\n",
+        "Now correct: She go to the store yesterday.\"\"\"\n",
+        "print(\"\\nFew-shot prompt for grammar correction:\")\n",
+        "print(prompt_2)\n",
+        "\n",
+        "# 3. Few-shot prompt for medical procedure explanation\n",
+        "prompt_3 = \"\"\"Provide a one-sentence explanation of the following medical procedures:\n",
+        "1. Procedure: Colonoscopy\n",
+        "   Explanation: A colonoscopy is a procedure that uses a flexible tube with a camera to examine the colon for abnormalities like polyps or cancer.\n",
+        "2. Procedure: Electrocardiogram (ECG)\n",
+        "   Explanation: An electrocardiogram (ECG) is a non-invasive test that records the electrical activity of the heart to detect heart conditions.\n",
+        "\n",
+        "Now explain: Appendectomy\"\"\"\n",
+        "print(\"\\nFew-shot prompt for medical procedure explanation:\")\n",
+        "print(prompt_3)\n",
+        "\n",
+        "# 4. Zero-shot prompt for patient condition summary\n",
+        "prompt_4 = \"\"\"Summarize the following patient condition in one sentence:\n",
+        "The patient reports chest pain and shortness of breath, with an ECG showing abnormalities.\"\"\"\n",
+        "print(\"\\nZero-shot prompt for patient condition summary:\")\n",
+        "print(prompt_4)\n",
+        "\n",
+        "# 5. Few-shot prompt for medical term definition\n",
+        "prompt_5 = \"\"\"Provide a one-sentence definition of the following medical terms:\n",
+        "1. Term: Hypertension\n",
+        "   Definition: Hypertension is high blood pressure that can strain the heart and blood vessels if not managed.\n",
+        "2. Term: Hypoglycemia\n",
+        "   Definition: Hypoglycemia is a condition where blood sugar levels drop too low, causing symptoms like shakiness or confusion.\n",
+        "\n",
+        "Now define: Anemia\"\"\"\n",
+        "print(\"\\nFew-shot prompt for medical term definition:\")\n",
+        "print(prompt_5)"
+      ],
+      "id": "Y6DU4PV-rcuY"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "SweIIRUmrcuZ"
+      },
+      "source": [
+        "**Expected Outputs**:\n",
+        "\n",
+        "1. \"Bean Bliss: Where every sip sparks joy!\"\n",
+        "2. \"She went to the store yesterday.\"\n",
+        "3. \"An appendectomy is a surgical procedure to remove the appendix, often performed to treat appendicitis.\"\n",
+        "4. \"The patient is experiencing chest pain and shortness of breath with abnormal ECG results, suggesting a possible heart condition.\"\n",
+        "5. \"Anemia is a condition where the body lacks enough red blood cells to carry oxygen, causing fatigue and weakness.\""
+      ],
+      "id": "SweIIRUmrcuZ"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "newWidgetSection"
+      },
+      "source": [
+        "## Interactive Prompt Testing with Widgets\n",
+        "\n",
+        "To make learning interactive, we’ll use `ipywidgets` to create a simple interface for testing zero-shot and few-shot prompts. Users can input a task and select a prompt type to see a simulated response.\n",
+        "\n",
+        "**Example**: Input a medical term and select 'Zero-shot' to get a definition."
+      ],
+      "id": "newWidgetSection"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "newWidgetCode"
+      },
+      "outputs": [],
+      "source": [
+        "from ipywidgets import interact, widgets\n",
+        "\n",
+        "def simulate_prompt_response(prompt_type, task_input):\n",
+        "    if prompt_type == 'Zero-shot':\n",
+        "        print(f\"Zero-shot Prompt: Define '{task_input}' in one sentence.\")\n",
+        "        print(f\"Simulated Output: [Definition of {task_input} in simple terms]\")\n",
+        "    elif prompt_type == 'Few-shot':\n",
+        "        print(f\"Few-shot Prompt for '{task_input}':\")\n",
+        "        print(\"1. Term: Hypertension\\n   Definition: Hypertension is high blood pressure that can strain the heart.\")\n",
+        "        print(\"2. Term: Hypoglycemia\\n   Definition: Hypoglycemia is low blood sugar causing shakiness.\")\n",
+        "        print(f\"Now define: {task_input}\")\n",
+        "        print(f\"Simulated Output: [Definition of {task_input} based on examples]\")\n",
+        "\n",
+        "# Create interactive widget\n",
+        "interact(\n",
+        "    simulate_prompt_response,\n",
+        "    prompt_type=widgets.Dropdown(options=['Zero-shot', 'Few-shot'], description='Prompt Type:'),\n",
+        "    task_input=widgets.Text(value='Anemia', description='Task Input:')\n",
+        ")"
+      ],
+      "id": "newWidgetCode"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "wriyunGCrcua"
+      },
+      "source": [
+        "## Optional: Running Prompts with an LLM API\n",
+        "\n",
+        "If you have access to an LLM API (e.g., OpenAI’s ChatGPT or Hugging Face), you can test your prompts programmatically. Below are examples for both OpenAI and Hugging Face APIs with error handling.\n",
+        "\n",
+        "**Example 1: OpenAI API**"
+      ],
+      "id": "wriyunGCrcua"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "AXCekHDmrcua"
+      },
+      "outputs": [],
+      "source": [
+        "# Example 1: OpenAI API with error handling\n",
+        "try:\n",
+        "    import openai\n",
+        "\n",
+        "    # Set up your API key\n",
+        "    openai.api_key = 'your-api-key-here'  # Replace with your actual key\n",
+        "\n",
+        "    # Define a prompt\n",
+        "    prompt = \"\"\"Summarize the following text in one sentence:\n",
+        "    Diabetes is a chronic condition where the body cannot properly regulate blood sugar levels, leading to high glucose in the blood. It can cause complications like heart disease or kidney damage if not managed.\"\"\"\n",
+        "\n",
+        "    # Send the prompt to the LLM\n",
+        "    response = openai.Completion.create(\n",
+        "        model=\"text-davinci-003\",  # Replace with your model\n",
+        "        prompt=prompt,\n",
+        "        max_tokens=50\n",
+        "    )\n",
+        "\n",
+        "    # Print the response\n",
+        "    print(\"OpenAI Response:\")\n",
+        "    print(response.choices[0].text.strip())\n",
+        "except ImportError:\n",
+        "    print(\"OpenAI library not installed. Install with `pip install openai`.\")\n",
+        "except Exception as e:\n",
+        "    print(f\"Error with OpenAI API: {e}\")\n",
+        "\n",
+        "# Example 2: Hugging Face API (using transformers)\n",
+        "try:\n",
+        "    from transformers import pipeline\n",
+        "\n",
+        "    # Initialize a text generation pipeline\n",
+        "    generator = pipeline('text-generation', model='gpt2')\n",
+        "\n",
+        "    # Define a prompt\n",
+        "    prompt = \"Explain the term 'hypertension' in simple language:\"\n",
+        "\n",
+        "    # Generate response\n",
+        "    response = generator(prompt, max_length=50, num_return_sequences=1)\n",
+        "\n",
+        "    # Print the response\n",
+        "    print(\"\\nHugging Face Response:\")\n",
+        "    print(response[0]['generated_text'])\n",
+        "except ImportError:\n",
+        "    print(\"Transformers library not installed. Install with `pip install transformers`.\")\n",
+        "except Exception as e:\n",
+        "    print(f\"Error with Hugging Face API: {e}\")"
+      ],
+      "id": "AXCekHDmrcua"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "KMaQhIhorcub"
+      },
+      "source": [
+        "**Note**: Replace `'your-api-key-here'` with your actual API key. For Hugging Face, ensure you have a compatible model installed or use their API endpoint. Check documentation for setup instructions."
+      ],
+      "id": "KMaQhIhorcub"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "newVizSection"
+      },
+      "source": [
+        "## Visualizing Prompt Outputs\n",
+        "\n",
+        "To enhance understanding, we’ll visualize the frequency of medical terms defined in prompts using matplotlib. For example, we’ll plot the number of times terms like 'hypertension' and 'hypoglycemia' appear in responses.\n",
+        "\n",
+        "**Example**: Bar chart of medical term frequencies."
+      ],
+      "id": "newVizSection"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "newVizCode"
+      },
+      "outputs": [],
+      "source": [
+        "# Example: Visualize medical term frequencies\n",
+        "def plot_term_frequencies():\n",
+        "    terms = ['Hypertension', 'Hypoglycemia', 'Anemia', 'Asthma']\n",
+        "    frequencies = [3, 2, 1, 2]  # Simulated frequencies\n",
+        "    plt.figure(figsize=(8, 6))\n",
+        "    plt.bar(terms, frequencies, color='skyblue')\n",
+        "    plt.title('Frequency of Medical Terms in Prompts')\n",
+        "    plt.xlabel('Medical Term')\n",
+        "    plt.ylabel('Frequency')\n",
+        "    plt.grid(True, axis='y')\n",
+        "    plt.savefig('term_frequencies.png')\n",
+        "    plt.show()\n",
+        "\n",
+        "# Run the visualization\n",
+        "plot_term_frequencies()"
+      ],
+      "id": "newVizCode"
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "udEMP59Urcuc"
+      },
+      "source": [
+        "## Conclusion and Next Steps\n",
+        "\n",
+        "Congratulations! You’ve learned the basics of prompt engineering, including:\n",
+        "- What prompt engineering is and why it’s important.\n",
+        "- How to craft clear and specific prompts.\n",
+        "- Zero-shot and few-shot prompting techniques, with applications in medical contexts.\n",
+        "- Practical tips for improving prompts.\n",
+        "- Interactive widgets and visualizations for prompt testing.\n",
+        "\n",
+        "**Next Steps**:\n",
+        "- Practice writing more prompts for different tasks (e.g., creative writing, coding, medical summaries, or analysis).\n",
+        "- Explore advanced techniques like **Chain-of-Thought** prompting in the Intermediate Prompt Engineering Notebook.\n",
+        "- Experiment with LLM APIs to test your prompts in real-time.\n",
+        "\n",
+        "**Homework**:\n",
+        "- Write five prompts for different tasks, including at least three related to medical scenarios (e.g., explaining a condition, summarizing patient symptoms, defining a medical term).\n",
+        "- Create a simple visualization for a set of prompt outputs (e.g., word count of responses).\n",
+        "- Implement an interactive widget for a new prompt task.\n",
+        "\n",
+        "**Example Homework Solution**:\n",
+        "- **Prompt 1 (Zero-shot)**: Define 'arrhythmia' in one sentence, using simple language.\n",
+        "- **Prompt 2 (Few-shot)**: Summarize patient symptoms with examples: (1) Symptoms: Chest pain, palpitations; Summary: The patient has chest pain and palpitations, possibly indicating a heart issue. (2) Symptoms: Fever, rash; Summary: The patient has a fever and rash, suggesting an infection or allergic reaction. Now summarize: Fatigue, joint pain.\n",
+        "- **Prompt 3 (Medical)**: Explain the purpose of a blood pressure monitor in one sentence.\n",
+        "- **Visualization**: Bar chart of response lengths for three prompts.\n",
+        "- **Widget**: Interactive widget to select a medical term and prompt type."
+      ],
+      "id": "udEMP59Urcuc"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "newHomeworkCode"
+      },
+      "outputs": [],
+      "source": [
+        "# Example Homework Solution: Visualization for response lengths\n",
+        "def plot_response_lengths():\n",
+        "    prompts = ['Prompt 1', 'Prompt 2', 'Prompt 3']\n",
+        "    lengths = [25, 30, 20]  # Simulated word counts\n",
+        "    plt.figure(figsize=(8, 6))\n",
+        "    plt.bar(prompts, lengths, color='lightgreen')\n",
+        "    plt.title('Response Lengths for Different Prompts')\n",
+        "    plt.xlabel('Prompt')\n",
+        "    plt.ylabel('Word Count')\n",
+        "    plt.grid(True, axis='y')\n",
+        "    plt.savefig('response_lengths.png')\n",
+        "    plt.show()\n",
+        "\n",
+        "# Run the visualization\n",
+        "plot_response_lengths()"
+      ],
+      "id": "newHomeworkCode"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3 (ipykernel)",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.9.7"
+    },
+    "colab": {
+      "provenance": []
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
